@@ -1,213 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="css/main.css" />
 
-<head>
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    <style>
+      :root {
+        --brand-primary: #1b296d;
+        --brand-secondary: #b9212a;
+        --primary-hover: #b9212a;
+        --primary-font-color: #1b296d;
+      }
+    </style>
+    <script>
+      const tokenGlobal = "74102a3c-dcdd-4fc0-ad51-8b28dfd5d23f";
+      const organizationGlobal = "YYU1JYgMCcW37TSOLG4h9avt2Zh1";
+    </script>
+    <title>Donnely Stucco</title>
+  </head>
 
- <link rel="stylesheet" href="css/main.css" />
+  <body>
+    <div client-html="client.html"></div>
+    <div id="landing">
+      <div class="extension-wrapper">
+        <div class="extension-license-pos-top-left">License #: BC-740845</div>
+        <div class="extension-two-col extension-home-page">
+          <div class="extension-left-col">
+            <div class="landing-page-content">
+              <div>
+                Be inspired and visualize your New Home now with the Donnelly
+                Home Visualizer!
+              </div>
 
+              <div>
+                1. Simply Upload Your Photo <br />2. Choose a Style of Siding
+                and Colors <br />3. See your new home in seconds...
+              </div>
+            </div>
+            <button
+              id="initializeButton"
+              data-modal-trigger="form"
+              class="extension-primary-button"
+            >
+              Show me!
+            </button>
+            <div></div>
+          </div>
 
- <style>
-  :root {
-   --brand-primary: #1b296d;
-   --brand-secondary: #b9212a;
-   --primary-hover: #b9212a;
-   --primary-font-color: #1b296d;
-  }
- </style>
- <script>
-  const tokenGlobal = "74102a3c-dcdd-4fc0-ad51-8b28dfd5d23f";
-  const organizationGlobal = "YYU1JYgMCcW37TSOLG4h9avt2Zh1";
- </script>
- <title>Donnely Stucco</title>
-</head>
-
-<body>
-
-
- <div id="landing">
-  <div class="extension-wrapper">
-   <div class="extension-license-pos-top-left">License #: BC-740845</div>
-   <div class="extension-two-col extension-home-page">
-    <div class="extension-left-col">
-     <div class="landing-page-content">
-      <div>
-       Be inspired and visualize your New Home now with the Donnelly
-       Home Visualizer!
+          <div class="extension-right-col">
+            <div class="fadein">
+              <img id="f1" class="image" src="./images/landingPic1.png" />
+              <img id="f2" class="image" src="./images/landingPic2.png" />
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div>
-       1. Simply Upload Your Photo <br />2. Choose a Style of Siding
-       and Colors <br />3. See your new home in seconds...
-      </div>
-     </div>
-     <button onclick="showPage('input')" class="extension-primary-button">
-      Show me!
-     </button>
-     <div></div>
     </div>
-
-    <div class="extension-right-col">
-     <div class="fadein">
-      <img id="f1" class="image" src="./images/landingPic1.png" />
-      <img id="f2" class="image" src="./images/landingPic2.png" />
-     </div>
-    </div>
-
-
-
-
-    <!-- <div class="extension-landing-page-brand-logo">
-     <img src="images/logo.png" />
-    </div>
-    <div class="extension-landing-page-brand-row"></div> -->
-   </div>
-
-
-   <div class="extension-landing-page-brand-row">
-    <div class="extension-landing-page-brand-logo">
-     <a href="#"><img src="images/logo.png"></a>
-    </div>
-   </div>
-  </div>
- </div>
-
- <div id="input" style="display: none">
-  <div class="extension-wrapper">
-   <div class="back-close-row">
-    <a onclick="showPage('landing')" href="#"><img src="images/back.svg" />Back</a>
-   </div>
-   <div class="extension-upload-container">
-    <div class="extension-upload-box" onclick="document.getElementById('inputImage').click();">
-     <input type="file" id="inputImage" accept="image/png, image/jpeg" style="display: none" />
-     <div class="upload-box-icon" id="inputImagesContainer">
-      <img src="images/upload-img-icon.png" alt="Placeholder Image" />
-     </div>
-     <div class="upload-box-main-txt">
-      Click to select an image of the house you want to remodel
-     </div>
-     <div class="upload-box-small-txt">PNG, JPG up to 5MB</div>
-    </div>
-    <div class="extension-form-field-row">
-     <label for="name">SELECT YOUR NEW EXTERIOR TYPE</label>
-     <select name="exterior" id="exterior"></select>
-    </div>
-    <div class="extension-form-field-row">
-     <label for="name">SELECT YOUR COLOR PREFERENCE</label>
-     <select name="color" id="color"></select>
-    </div>
-
-    <div>
-     <button onclick="showPage('visualize')" class="extension-primary-button extension-button-fluid"
-      id="visualizeButton">
-      Visualize
-     </button>
-    </div>
-   </div>
-
-   <div class="extension-landing-page-brand-logo">
-    <img src="images/logo.png" />
-   </div>
-   <div class="extension-landing-page-brand-row"></div>
-  </div>
- </div>
-
- <div id="visualize" style="display: none">
-  <div class="extension-wrapper">
-   <div class="back-close-row">
-    <div class="back-close-row">
-     <a onclick="showPage('input')" href="#"><img src="images/back.svg" />Back</a>
-    </div>
-   </div>
-   <div class="extension-result-images-row">
-    <div class="extension-result-content extension-result-content-show mCustomScrollbar" data-mcs-theme="dark">
-     <div id="outputImages" class=" show-generated-images"></div>
-    </div>
-   </div>
-
-   <div class="extension-contact-text-row">
-    <button onclick="showPage('form')" class="extension-primary-button">
-     Connect With Our Team
-    </button>
-   </div>
-
-   <div class="empty-spacer-50"></div>
-
-   <div class="extension-landing-page-brand-logo">
-    <img src="images/logo.png" />
-   </div>
-   <div class="extension-landing-page-brand-row"></div>
-  </div>
- </div>
-
- <div id="form" style="display: none">
-  <div class="extension-wrapper">
-   <div class="back-close-row">
-    <a onclick="showPage('visualize')" href="#"><img src="images/back.svg" />Back</a>
-   </div>
-
-   <div class="extension-email-box-container">
-    <div class="email-form-box">
-     <div class="extension-form-field-row">
-      <label for="name">First Name</label>
-      <input type="text" id="fname" name="fname" />
-     </div>
-     <div class="extension-form-field-row">
-      <label for="name">Last Name</label>
-      <input type="text" id="lname" name="fname" />
-     </div>
-     <div class="extension-form-field-row">
-      <label for="name">Email Address</label>
-      <input type="email" id="email" name="fname" />
-     </div>
-     <div class="extension-form-field-row">
-      <label for="name">Phone Number</label>
-      <input type="tel" id="phone" name="fname" />
-     </div>
-     <div class="extension-form-field-row">
-      <label for="name">Zip Code</label>
-      <input type="" id="fname" name="fname" />
-     </div>
-     <div class="extension-form-field-row">
-      <label for="name">Send us your remodeling question...</label>
-      <input type="text" id="fname" name="fname" />
-     </div>
-     <div class="extension-form-field-row">
-      <button class="extension-primary-button">Submit</button>
-     </div>
-    </div>
-   </div>
-
-   <div class="empty-spacer-50"></div>
-
-   <div class="extension-landing-page-brand-logo">
-    <img src="images/logo.png" />
-   </div>
-   <div class="extension-landing-page-brand-row"></div>
-  </div>
- </div>
- <script src="js/client.js"></script>
- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-
- <script>
-
-  // (function ($) {
-  //  $(window).on("load", function () {
-  //   $(".show-generated-images").mCustomScrollbar();
-
-  //  });
-  // })(jQuery);
-
-
-
-
-
- </script>
-</body>
-
+    <script src="js/client.js"></script>
+  </body>
 </html>

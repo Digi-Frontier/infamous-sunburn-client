@@ -1,0 +1,133 @@
+<div data-modal="form" class="modal-wrapper">
+  <link rel="stylesheet" href="css/main.css" />
+  <div class="modal-body">
+    <div id="input" class="modal-content-container">
+      <div class="back-close-row">
+        <div></div>
+        <a id="modal-close" class="close" href="#"
+          >Close <img src="images/close.svg"
+        /></a>
+      </div>
+      <div class="extension-upload-container">
+        <div
+          class="extension-upload-box"
+          onclick="document.getElementById('inputImage').click();"
+        >
+          <input
+            type="file"
+            id="inputImage"
+            accept="image/png, image/jpeg"
+            style="display: none"
+          />
+          <div class="upload-box-icon" id="inputImagesContainer">
+            <img src="images/upload-img-icon.png" alt="Placeholder Image" />
+          </div>
+          <div class="upload-box-main-txt">
+            Click to select an image of the house you want to remodel
+          </div>
+          <div class="upload-box-small-txt">PNG, JPG up to 5MB</div>
+        </div>
+        <div class="extension-form-field-row">
+          <label for="name">SELECT YOUR NEW EXTERIOR TYPE</label>
+          <select name="exterior" id="exterior"></select>
+        </div>
+        <div class="extension-form-field-row">
+          <label for="name">SELECT YOUR COLOR PREFERENCE</label>
+          <select name="color" id="color"></select>
+        </div>
+
+        <div>
+          <button
+            class="extension-primary-button extension-button-fluid"
+            id="visualizeButton"
+          >
+            Visualize
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="visualize" class="modal-content-container" style="display: none">
+      <div class="back-close-row">
+        <a onclick="showPage('input')" href="#"
+          ><img src="images/back.svg" />Back</a
+        >
+        <a id="modal-close" class="close" href="#"
+          >Close <img src="images/close.svg"
+        /></a>
+      </div>
+      <div class="extension-wrapper">
+        <div class="extension-result-images-row">
+          <div
+            class="extension-result-content extension-result-content-show mCustomScrollbar"
+            data-mcs-theme="dark"
+          >
+            <div id="generating-loader" class="image-generating">
+              <div class="loader"></div>
+              <h1 class="image-generating-text">
+                Generating... This may take 3-5 minutes
+              </h1>
+            </div>
+            <div id="outputImages" class="show-generated-images"></div>
+          </div>
+        </div>
+
+        <div class="extension-contact-text-row">
+          <button
+            onclick="showPage('contact')"
+            class="extension-primary-button"
+            id="connectButton"
+          >
+            Connect With Our Team
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact" class="modal-content-container" style="display: none">
+      <div class="back-close-row">
+        <a onclick="showPage('visualize')" href="#"
+          ><img src="images/back.svg" />Back</a
+        >
+        <a id="modal-close" class="close" href="#"
+          >Close <img src="images/close.svg"
+        /></a>
+      </div>
+      <div class="extension-wrapper">
+        <div class="extension-email-box-container">
+          <div class="email-form-box">
+            <div class="extension-form-field-row">
+              <label for="name">First Name*</label>
+              <input type="text" id="fname" name="fname" />
+            </div>
+            <div class="extension-form-field-row">
+              <label for="name">Last Name*</label>
+              <input type="text" id="lname" name="fname" />
+            </div>
+            <div class="extension-form-field-row">
+              <label for="name">Email Address*</label>
+              <input type="email" id="email" name="fname" />
+            </div>
+            <div class="extension-form-field-row">
+              <label for="name">Phone Number</label>
+              <input type="tel" id="phone" name="fname" />
+            </div>
+            <div class="extension-form-field-row">
+              <label for="name">Zip Code*</label>
+              <input type="" id="zip" name="zip" />
+            </div>
+            <div class="extension-form-field-row">
+              <label for="name">Send us your remodeling question...</label>
+              <input type="text" id="question" name="question" />
+            </div>
+            <div class="extension-form-field-row">
+              <button id="contactButton" class="extension-primary-button">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
