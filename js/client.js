@@ -1,4 +1,4 @@
-const domain = "https://api.digi-frontier.com";
+const domain = "api.digi-frontier.com";
 let socket;
 let storedImageUrls = [];
 
@@ -148,7 +148,7 @@ function displayInputImage(imageFile) {
 
 const getOptions = async () => {
   $.ajax({
-    url: `http://${domain}/api/getInfo`,
+    url: `https://${domain}/api/getInfo`,
     method: "GET",
     data: { organization: organizationGlobal },
     success: (response) => {
@@ -160,7 +160,7 @@ const getOptions = async () => {
         return;
       }
 
-      socket = io(`ws://${domain}`);
+      socket = io(`wss://${domain}`);
       populateExteriorOptions("exterior", response.data.wallType);
       populateExteriorOptions("color", response.data.colors);
     },
