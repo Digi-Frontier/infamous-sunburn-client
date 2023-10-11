@@ -1,5 +1,10 @@
 <div data-modal="form" class="modal-wrapper">
   <link rel="stylesheet" href="css/main.css" />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+  />
 
   <div class="modal-body">
     <div id="input" class="modal-content-container">
@@ -24,26 +29,31 @@
             <img src="images/upload-img-icon.png" alt="Placeholder Image" />
           </div>
           <div class="upload-box-main-txt">
-            Click to select an image of the house you want to remodel
+            <label class="visualize-labels" for="upload-box-main-txt">
+              Step 1 - Upload an image of your exterior house
+            </label>
           </div>
           <div class="upload-box-small-txt">PNG, JPG up to 5MB</div>
         </div>
         <div class="extension-form-field-row">
-          <label for="name">SELECT YOUR NEW EXTERIOR TYPE</label>
+          <label for="name">Step 2 - Select exterior style</label>
           <select name="exterior" id="exterior"></select>
         </div>
         <div class="extension-form-field-row">
-          <label for="name">SELECT YOUR COLOR PREFERENCE</label>
+          <label for="name">Step 3 - Select exterior color</label>
           <select name="color" id="color"></select>
         </div>
 
-        <div>
-          <button
-            class="extension-primary-button extension-button-fluid"
-            id="visualizeButton"
-          >
-            Visualize
-          </button>
+        <div class="extension-form-field-row">
+          <label for="name">Step 4 - Click on visualize</label>
+          <section name="color">
+            <button
+              class="extension-primary-button extension-button-fluid"
+              id="visualizeButton"
+            >
+              Visualize
+            </button>
+          </section>
         </div>
       </div>
     </div>
@@ -51,14 +61,10 @@
     <div id="visualize" class="modal-content-container" style="display: none">
       <div class="back-close-row">
         <a onclick="showPage('input')" href="#"
-          ><img
-            src="https://cdn.jsdelivr.net/gh/Digi-Frontier/infamous-sunburn-client@main/images/back.svg"
-          />Back</a
+          ><img src="images/back.svg" />Back</a
         >
         <a id="modal-close" class="close" href="#"
-          >Close
-          <img
-            src="https://cdn.jsdelivr.net/gh/Digi-Frontier/infamous-sunburn-client@main/images/close.svg"
+          >Close <img src="images/close.svg"
         /></a>
       </div>
       <div class="extension-wrapper">
@@ -92,14 +98,10 @@
     <div id="contact" class="modal-content-container" style="display: none">
       <div class="back-close-row">
         <a onclick="showPage('visualize')" href="#"
-          ><img
-            src="https://cdn.jsdelivr.net/gh/Digi-Frontier/infamous-sunburn-client@main/images/back.svg"
-          />Back</a
+          ><img src="images/back.svg" />Back</a
         >
         <a id="modal-close" class="close" href="#"
-          >Close
-          <img
-            src="https://cdn.jsdelivr.net/gh/Digi-Frontier/infamous-sunburn-client@main/images/close.svg"
+          >Close <img src="images/close.svg"
         /></a>
       </div>
       <div class="extension-wrapper">
