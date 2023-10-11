@@ -1,4 +1,4 @@
-const domain = "api.digi-frontier.com";
+const domain = "127.0.0.1:3000";
 let socket;
 let storedImageUrls = [];
 
@@ -123,8 +123,8 @@ function addConnectionButtonListener() {
 function addContactButtonListener() {
   document
     .getElementById("contactButton")
-    .addEventListener("click", function (event) {
-      event.preventDefault();
+    .addEventListener("click", function (e) {
+      e.preventDefault();
       submitContactForm();
     });
 }
@@ -148,7 +148,7 @@ function displayInputImage(imageFile) {
 
 const getOptions = async () => {
   $.ajax({
-    url: `https://${domain}/api/getInfo`,
+    url: `http://${domain}/api/getInfo`,
     method: "GET",
     data: { organization: organizationGlobal },
     success: (response) => {
@@ -160,7 +160,7 @@ const getOptions = async () => {
         return;
       }
 
-      socket = io(`wss://${domain}`);
+      socket = io(`ws://${domain}`);
       populateExteriorOptions("exterior", response.data.wallType);
       populateExteriorOptions("color", response.data.colors);
     },
@@ -193,7 +193,6 @@ function initializeEvent() {
     "initializeEvent",
     JSON.stringify({ organization: organizationGlobal, token: tokenGlobal })
   );
-
   socket.on("error", (errorMessage) => {
     console.error("Error:", errorMessage);
   });
@@ -204,7 +203,6 @@ function contactEvent() {
     "connectEvent",
     JSON.stringify({ organization: organizationGlobal, token: tokenGlobal })
   );
-
   socket.on("error", (errorMessage) => {
     console.error("Error:", errorMessage);
   });
@@ -212,10 +210,10 @@ function contactEvent() {
 
 function startGeneration(data) {
   socket.emit("generate", JSON.stringify(data));
+
   const imagesContainer = document.getElementById("outputImages");
   imagesContainer.innerHTML = "";
   document.getElementById("generating-loader").style.display = "flex";
-
   socket.on("generationCompleted", (output) => {
     console.log("Generation completed:", output);
     displayMessage({
@@ -224,8 +222,7 @@ function startGeneration(data) {
     });
     displayImages(output);
   });
-
-  socket.on("error", (errorMessage) => {
+  socket.on("generationError", (errorMessage) => {
     console.error("Error:", errorMessage);
     displayMessage({
       success: false,
@@ -259,8 +256,6 @@ function submitContactForm() {
 
   // Emit the data
   socket.emit("contactSubmission", JSON.stringify(data));
-
-  // Handle the response from the server (if any)
   socket.on("contactComplete", (output) => {
     console.log("Submission completed:", output);
     displayMessage({
@@ -270,11 +265,12 @@ function submitContactForm() {
   });
 
   socket.on("error", (errorMessage) => {
-    console.error("Error:", errorMessage);
+    console.log("Error:", errorMessage);
     displayMessage({
       success: false,
       message: errorMessage,
     });
+    return;
   });
 }
 
