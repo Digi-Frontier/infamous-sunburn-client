@@ -136,6 +136,9 @@ table {
     display: none;
     transition: all 0.3s ease-in-out;
     background-color: transparent;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
 }
 
 .modal-wrapper.is-open {
@@ -159,7 +162,8 @@ table {
     margin: auto;
     animation: pop 0.5s ease;
     background-color: white;
-    width: 90vw;
+    width: 80vw;
+    height: auto;
     max-width: 1500px;
     border-radius: 10px;
     padding: 50px;
@@ -417,8 +421,44 @@ table {
 }
 
 @media only screen and (max-width: 767px) {
-    .modal-body {
-        padding: 20px;
+
+    .extension-email-box-container {
+        width: 90%;
+        margin: auto;
+    }
+
+    .extension-contact-text-row {
+        margin-top: 0px;
+    }
+
+    .extension-primary-button {
+        width: 90%;
+    }
+
+    #connectButton {
+        width: 90%;
+        padding: 14px 10px;
+        margin-top: 1vw;
+
+    }
+
+    .extension-form-field-row input,
+    .extension-form-field-row select {
+        padding: 8px 10px;
+        width: 90%;
+
+    }
+
+
+    .extension-form-field-row label {
+        width: 90%;
+        font-size: 15px;
+
+    }
+
+    .extension-upload-box {
+        height: 200px;
+        width: 90%;
     }
 
     .logo-img {
@@ -435,7 +475,7 @@ table {
 
     .email-form-box {
         margin: auto;
-        width: 300px;
+        width: 85%;
     }
 
     .extension-home-page .extension-left-col {
@@ -461,7 +501,7 @@ table {
 
     .extension-upload-container {
         width: 330px;
-        margin: 50px auto 0px;
+        margin: 0px auto 0px;
     }
 
     .extension-project-visual-row {
@@ -501,6 +541,12 @@ table {
 
     }
 
+    .modal-body {
+        padding: 20px;
+        height: auto;
+
+    }
+
 
 }
 
@@ -518,6 +564,11 @@ table {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .modal-body {
+        padding: 20px;
+        height: auto;
+
+    }
 
     .fadein img {
         position: absolute;
