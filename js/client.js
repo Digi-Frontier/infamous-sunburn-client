@@ -125,7 +125,13 @@ function addContactButtonListener() {
     .getElementById("contactButton")
     .addEventListener("click", function (e) {
       e.preventDefault();
-      submitContactForm();
+      const imageFile = document.getElementById("inputImage").files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageBase64 = reader.result;
+        submitContactForm(imageBase64);
+      };
+      reader.readAsDataURL(imageFile);
     });
 }
 
@@ -232,7 +238,7 @@ function startGeneration(data) {
   });
 }
 
-function submitContactForm() {
+function submitContactForm(inputImage) {
   // Get the values from the form fields
   const firstName = document.getElementById("fname").value;
   const lastName = document.getElementById("lname").value;
@@ -252,6 +258,7 @@ function submitContactForm() {
     zip: zip,
     question: question,
     images: storedImageUrls,
+    inputImage: inputImage,
   };
 
   // Emit the data
