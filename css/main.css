@@ -216,6 +216,22 @@ table {
     gap: 20px;
 }
 
+#inputImagesContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    max-height: 100%;
+    margin-bottom: 0px;
+}
+
+#inputImagesContainer img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 5px;
+}
+
 .extension-form-field-row {
     display: flex;
     flex-direction: column;
@@ -291,8 +307,8 @@ table {
     line-height: normal;
     max-width: 300px;
     text-align: center;
-    margin-bottom: 15px;
     color: var(--brand-primary);
+    margin-top: 15px;
 }
 
 .loader {
@@ -424,7 +440,8 @@ table {
 
     .extension-email-box-container {
         width: 90%;
-        margin: auto;
+        margin-bottom: 15px;
+
     }
 
     .extension-contact-text-row {
@@ -544,6 +561,10 @@ table {
     .modal-body {
         padding: 20px;
         height: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        overflow-y: scroll;
+        overflow-x: hidden;
 
     }
 
