@@ -166,7 +166,10 @@ const getOptions = async () => {
         return;
       }
 
-      socket = io(`wss://${domain}`, { withCredentials: true });
+      socket = io(`wss://${domain}`, {
+        withCredentials: true,
+        transports: ["websocket"],
+      });
       populateExteriorOptions("exterior", response.data.wallType);
       populateExteriorOptions("color", response.data.colors);
     },
