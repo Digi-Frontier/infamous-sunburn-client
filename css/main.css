@@ -315,6 +315,7 @@ table {
     background-size: 2px 100%, 100% 2px, 2px 100%, 100% 2px;
     background-position: 0 0, 0 0, 100% 0, 0 100%;
     background-repeat: no-repeat;
+    padding: 20px;
 }
 
 .upload-box-icon {
@@ -461,6 +462,9 @@ table {
 }
 
 @media only screen and (max-width: 767px) {
+    .upload-box-main-txt {
+        font-size: 13px;
+    }
 
     .extension-email-box-container {
         width: 90%;
