@@ -113,14 +113,38 @@ function addConnectionButtonListener() {
   });
 }
 
-function addContactButtonListener() {
-  document
-    .getElementById("contactButton")
-    .addEventListener("click", function (e) {
-      e.preventDefault();
-      const imageFile = document.getElementById("inputImage");
-      submitContactForm(imageFile.src);
-    });
+function validateContact(event) {
+  event.preventDefault();
+  const form = document.getElementById("emailForm");
+  if (form.checkValidity()) {
+    const firstName = document.getElementById("fname").value;
+    const lastName = document.getElementById("lname").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const zip = document.getElementById("zip").value;
+    const question = document.getElementById("question").value;
+    const imageFile = document.getElementById("inputImage");
+
+    const data = {
+      organization: organizationGlobal,
+      token: tokenGlobal,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+      zip: zip,
+      question: question,
+      images: storedImageUrls,
+      inputImage: imageFile.src,
+    };
+
+    socket.emit("contactSubmission", JSON.stringify(data));
+    showPage("thankYou");
+
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function displayInputImage(imageFile) {
@@ -219,10 +243,6 @@ const getOptions = async () => {
             message: errorMessage,
           });
         });
-        socket.on("contactComplete", (output) => {
-          console.log("Submission completed:", output);
-          showPage("thankYou");
-        });
 
         socketInitialized = true;
       }
@@ -275,34 +295,6 @@ function startGeneration(data) {
   imagesContainer.innerHTML = "";
   document.getElementById("generating-loader").style.display = "flex";
 }
-
-function submitContactForm(inputImage) {
-  // Get the values from the form fields
-  const firstName = document.getElementById("fname").value;
-  const lastName = document.getElementById("lname").value;
-  const email = document.getElementById("email").value;
-  const phone = document.getElementById("phone").value;
-  const zip = document.getElementById("zip").value;
-  const question = document.getElementById("question").value;
-
-  // Create the data object
-  const data = {
-    organization: organizationGlobal,
-    token: tokenGlobal,
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    phone: phone,
-    zip: zip,
-    question: question,
-    images: storedImageUrls,
-    inputImage: inputImage,
-  };
-
-  // Emit the data
-  socket.emit("contactSubmission", JSON.stringify(data));
-}
-
 const modalService = () => {
   const d = document;
   const body = d.querySelector("body");
@@ -364,7 +356,6 @@ async function includeHTML() {
             addVisualizeButtonListener();
             addInitializeButtonListener();
             addConnectionButtonListener();
-            addContactButtonListener();
             await getOptions();
             modalService();
           }

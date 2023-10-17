@@ -10,7 +10,7 @@
   />
 
   <div class="modal-body">
-    <div id="input" class="modal-content-container" style="display: none">
+    <div id="input" class="modal-content-container">
       <div class="back-close-row">
         <div></div>
         <a id="modal-close" class="close" href="#"
@@ -106,7 +106,7 @@
         </div>
       </div>
     </div>
-    <div id="contact" class="modal-content-container">
+    <div id="contact" class="modal-content-container" style="display: none">
       <div class="back-close-row">
         <a onclick="showPage('visualize')" href="#"
           ><img
@@ -121,35 +121,41 @@
       </div>
       <div class="extension-email-box-container">
         <div class="email-form-box">
-          <div class="extension-form-field-row">
-            <label for="name">First Name*</label>
-            <input required type="text" id="fname" name="fname" />
-          </div>
-          <div class="extension-form-field-row">
-            <label for="name">Last Name*</label>
-            <input required type="text" id="lname" name="fname" />
-          </div>
-          <div class="extension-form-field-row">
-            <label for="name">Email Address*</label>
-            <input required type="email" id="email" name="fname" />
-          </div>
-          <div class="extension-form-field-row">
-            <label for="name">Phone Number</label>
-            <input type="tel" id="phone" name="fname" />
-          </div>
-          <div class="extension-form-field-row">
-            <label for="name">Zip Code*</label>
-            <input required type="" id="zip" name="zip" />
-          </div>
-          <div class="extension-form-field-row">
-            <label for="name">Send us your remodeling question...</label>
-            <input type="text" id="question" name="question" />
-          </div>
-          <div class="extension-form-field-row">
-            <button id="contactButton" class="extension-primary-button">
-              Submit
-            </button>
-          </div>
+          <form id="emailForm" onsubmit="return validateContact(event);">
+            <div class="extension-form-field-row">
+              <label for="name">First Name*</label>
+              <input required type="text" id="fname" name="fname" />
+            </div>
+            <div class="extension-form-field-row">
+              <label for="name">Last Name*</label>
+              <input required type="text" id="lname" name="fname" />
+            </div>
+            <div class="extension-form-field-row">
+              <label for="name">Email Address*</label>
+              <input required type="email" id="email" name="fname" />
+            </div>
+            <div class="extension-form-field-row">
+              <label for="name">Phone Number</label>
+              <input type="tel" id="phone" name="fname" />
+            </div>
+            <div class="extension-form-field-row">
+              <label for="name">Zip Code*</label>
+              <input required type="" id="zip" name="zip" />
+            </div>
+            <div class="extension-form-field-row">
+              <label for="name">Send us your remodeling question...</label>
+              <input type="text" id="question" name="question" />
+            </div>
+            <div class="extension-form-field-row" style="margin-top: 15px">
+              <button
+                type="submit"
+                id="contactButton"
+                class="extension-primary-button"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
