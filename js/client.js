@@ -156,12 +156,14 @@ function displayInputImage(imageFile) {
       canvas.height = height;
       const ctx = canvas.getContext("2d");
       ctx.drawImage(imageElement, 0, 0, width, height);
-      const resizedImageSrc = canvas.toDataURL("image/jpeg");
+      const resizedImageSrc = canvas.toDataURL("image/png");
       inputImg.src = resizedImageSrc;
       inputImg.alt = "Input Image";
       inputImg.id = "inputImage";
+      inputImg.loading = "eager";
 
       imagesContainer.appendChild(inputImg);
+      $("#inputImage").load(" #inputImage > *");
     };
   };
 
