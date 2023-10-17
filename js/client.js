@@ -221,10 +221,6 @@ const getOptions = async () => {
         });
         socket.on("contactComplete", (output) => {
           console.log("Submission completed:", output);
-          displayMessage({
-            success: true,
-            message: output,
-          });
           showPage("thankYou");
         });
 
