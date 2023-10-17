@@ -138,7 +138,6 @@ table {
     background-color: transparent;
     padding-top: 20px;
     padding-bottom: 20px;
-
 }
 
 .modal-wrapper.is-open {
@@ -151,7 +150,7 @@ table {
     left: 0;
     right: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     overflow-y: scroll;
 }
@@ -166,9 +165,9 @@ table {
     height: auto;
     max-width: 1500px;
     border-radius: 10px;
-    padding: 50px;
     display: flex;
     justify-content: center;
+    padding: 20px;
 }
 
 .modal-content-container {
@@ -192,6 +191,23 @@ table {
     font-size: 18px;
     font-style: normal;
     letter-spacing: 0.27px;
+    text-align: center;
+}
+
+.thank-you-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.thank-you-text {
+    font-size: 20px;
+    text-align: center;
 }
 
 .extension-primary-button:hover {
@@ -213,6 +229,8 @@ table {
     margin: 100px auto 0px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 
@@ -235,6 +253,8 @@ table {
 .extension-form-field-row {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 5px;
 }
 
@@ -272,6 +292,7 @@ table {
     background: #fff;
     padding: 16px 18px;
     appearance: none;
+    font-size: 16px;
 }
 
 .extension-form-field-row select {
@@ -313,7 +334,7 @@ table {
 
 .loader {
     border: 16px solid #f3f3f3;
-    border-top: 16px solid var(--brand-secondary);
+    border-top: 16px solid var(--brand-primary);
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -379,22 +400,25 @@ table {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 
 .image-generating {
-    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 30px;
+    width: 80%;
 }
 
 .image-generating-text {
     font-weight: 100px;
     font-size: 20px;
     text-align: center;
+    max-width: 80%;
 }
 
 .show-generated-images {
@@ -448,9 +472,6 @@ table {
         margin-top: 0px;
     }
 
-    .extension-primary-button {
-        width: 90%;
-    }
 
     #connectButton {
         width: 90%;
@@ -468,14 +489,13 @@ table {
 
 
     .extension-form-field-row label {
-        width: 90%;
         font-size: 15px;
 
     }
 
     .extension-upload-box {
         height: 200px;
-        width: 90%;
+        width: 80%;
     }
 
     .logo-img {
@@ -508,18 +528,11 @@ table {
         background-position: center;
     }
 
-    .landing-page-content {
-        font-size: 20px;
-        padding: 0px 30px;
-        line-height: 32px;
-        margin-bottom: 0px;
-        margin-top: 26px;
-    }
-
     .extension-upload-container {
-        width: 330px;
+        width: 90%;
         margin: 0px auto 0px;
     }
+
 
     .extension-project-visual-row {
         flex-direction: column;
@@ -559,11 +572,6 @@ table {
     }
 
     .modal-body {
-        padding: 20px;
-        height: auto;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        overflow-y: scroll;
         overflow-x: hidden;
 
     }
@@ -572,6 +580,8 @@ table {
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1400px) {
+
+
     .fadein img {
         position: absolute;
         right: 0;
@@ -585,10 +595,11 @@ table {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+
     .modal-body {
         padding: 20px;
         height: auto;
-
     }
 
     .fadein img {
@@ -636,14 +647,6 @@ table {
 
     }
 
-    .landing-page-content {
-        font-size: 22px;
-        padding: 0px 30px;
-        line-height: 42px;
-        margin-bottom: 28px;
-        margin-top: 50px;
-    }
-
     .extension-upload-container {
         width: 450px;
         margin: 50px auto 0px;
@@ -671,6 +674,7 @@ table {
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1400px) {
+
 
 
 

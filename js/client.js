@@ -1,6 +1,7 @@
 const domain = "api.digi-frontier.com";
 let socket;
 let storedImageUrls = [];
+let socketInitialized = false;
 
 // Asset Loading
 const loadAsset = async (type, url, callback) => {
@@ -25,7 +26,7 @@ const loadAsset = async (type, url, callback) => {
 const getRandomNumber = () => Math.floor(Math.random() * 900000) + 100000;
 
 const showPage = (pageId) => {
-  ["input", "visualize", "contact"].forEach((id) => {
+  ["input", "visualize", "contact", "thankYou"].forEach((id) => {
     document.getElementById(id).style.display =
       id === pageId ? "inline" : "none";
   });
@@ -35,7 +36,6 @@ const displayMessage = (data) => {
   Toastify({
     text: data.message,
     duration: data.success ? 10000 : 3000,
-    destination: "https://github.com/apvarun/toastify-js",
     newWindow: true,
     close: true,
     gravity: "top",
@@ -57,7 +57,7 @@ const populateExteriorOptions = (elementId, options) => {
 };
 
 function addInputImageEventListener() {
-  const inputImageElement = document.getElementById("inputImage");
+  const inputImageElement = document.getElementById("imageInput");
 
   if (inputImageElement) {
     inputImageElement.addEventListener("change", (event) => {
@@ -74,7 +74,7 @@ function addInputImageEventListener() {
 
 function addVisualizeButtonListener() {
   document.getElementById("visualizeButton").addEventListener("click", () => {
-    const imageFile = document.getElementById("inputImage").files[0];
+    const imageFile = document.getElementById("inputImage");
     const exterior = document.getElementById("exterior").value;
     const color = document.getElementById("color").value;
     const token = tokenGlobal;
@@ -89,22 +89,15 @@ function addVisualizeButtonListener() {
       });
       return;
     }
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      const imageBase64 = reader.result;
-      const dataToSend = {
-        image: imageBase64,
-        exterior: exterior,
-        token: token,
-        organization: organization,
-        color: color,
-      };
-
-      startGeneration(dataToSend);
-      showPage("visualize");
+    const dataToSend = {
+      image: imageFile.src,
+      exterior: exterior,
+      token: token,
+      organization: organization,
+      color: color,
     };
-    reader.readAsDataURL(imageFile);
+    startGeneration(dataToSend);
+    showPage("visualize");
   });
 }
 
@@ -125,13 +118,8 @@ function addContactButtonListener() {
     .getElementById("contactButton")
     .addEventListener("click", function (e) {
       e.preventDefault();
-      const imageFile = document.getElementById("inputImage").files[0];
-      const reader = new FileReader();
-      reader.onload = () => {
-        const imageBase64 = reader.result;
-        submitContactForm(imageBase64);
-      };
-      reader.readAsDataURL(imageFile);
+      const imageFile = document.getElementById("inputImage");
+      submitContactForm(imageFile.src);
     });
 }
 
@@ -143,10 +131,38 @@ function displayInputImage(imageFile) {
   reader.onload = (event) => {
     const inputImageSrc = event.target.result;
     const inputImg = document.createElement("img");
-    inputImg.src = inputImageSrc;
-    inputImg.alt = "Input Image";
 
-    imagesContainer.appendChild(inputImg);
+    const maxSize = 512; // Max width or height
+
+    // Create a new Image element to handle image resizing
+    const imageElement = new Image();
+    imageElement.src = inputImageSrc;
+
+    imageElement.onload = () => {
+      let width = imageElement.width;
+      let height = imageElement.height;
+
+      if (width > maxSize || height > maxSize) {
+        if (width > height) {
+          height *= maxSize / width;
+          width = maxSize;
+        } else {
+          width *= maxSize / height;
+          height = maxSize;
+        }
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(imageElement, 0, 0, width, height);
+      const resizedImageSrc = canvas.toDataURL("image/jpeg");
+      inputImg.src = resizedImageSrc;
+      inputImg.alt = "Input Image";
+      inputImg.id = "inputImage";
+
+      imagesContainer.appendChild(inputImg);
+    };
   };
 
   reader.readAsDataURL(imageFile);
@@ -166,10 +182,53 @@ const getOptions = async () => {
         return;
       }
 
-      socket = io(`wss://${domain}`, {
-        withCredentials: true,
-        transports: ["websocket"],
-      });
+      if (!socketInitialized) {
+        socket = io(`wss://${domain}`, {
+          withCredentials: true,
+          transports: ["websocket"],
+        });
+
+        // Attach event listeners here
+        socket.on("error", (errorMessage) => {
+          console.error("Error:", errorMessage);
+        });
+
+        socket.on("generationCompleted", (output) => {
+          console.log("Generation completed:", output);
+          displayMessage({
+            success: true,
+            message: "Generation complete.",
+          });
+          displayImages(output);
+        });
+
+        socket.on("generationError", (errorMessage) => {
+          console.error("Error:", errorMessage);
+          displayMessage({
+            success: false,
+            message: errorMessage,
+          });
+          showPage("input");
+        });
+        socket.on("contactError", (errorMessage) => {
+          console.error("Error:", errorMessage);
+          displayMessage({
+            success: false,
+            message: errorMessage,
+          });
+        });
+        socket.on("contactComplete", (output) => {
+          console.log("Submission completed:", output);
+          displayMessage({
+            success: true,
+            message: output,
+          });
+          showPage("thankYou");
+        });
+
+        socketInitialized = true;
+      }
+
       populateExteriorOptions("exterior", response.data.wallType);
       populateExteriorOptions("color", response.data.colors);
     },
@@ -202,9 +261,6 @@ function initializeEvent() {
     "initializeEvent",
     JSON.stringify({ organization: organizationGlobal, token: tokenGlobal })
   );
-  socket.on("error", (errorMessage) => {
-    console.error("Error:", errorMessage);
-  });
 }
 
 function contactEvent() {
@@ -212,9 +268,6 @@ function contactEvent() {
     "connectEvent",
     JSON.stringify({ organization: organizationGlobal, token: tokenGlobal })
   );
-  socket.on("error", (errorMessage) => {
-    console.error("Error:", errorMessage);
-  });
 }
 
 function startGeneration(data) {
@@ -223,22 +276,6 @@ function startGeneration(data) {
   const imagesContainer = document.getElementById("outputImages");
   imagesContainer.innerHTML = "";
   document.getElementById("generating-loader").style.display = "flex";
-  socket.on("generationCompleted", (output) => {
-    console.log("Generation completed:", output);
-    displayMessage({
-      success: true,
-      message: "Generation completed.",
-    });
-    displayImages(output);
-  });
-  socket.on("generationError", (errorMessage) => {
-    console.error("Error:", errorMessage);
-    displayMessage({
-      success: false,
-      message: errorMessage,
-    });
-    showPage("input");
-  });
 }
 
 function submitContactForm(inputImage) {
@@ -266,22 +303,6 @@ function submitContactForm(inputImage) {
 
   // Emit the data
   socket.emit("contactSubmission", JSON.stringify(data));
-  socket.on("contactComplete", (output) => {
-    console.log("Submission completed:", output);
-    displayMessage({
-      success: true,
-      message: output,
-    });
-  });
-
-  socket.on("error", (errorMessage) => {
-    console.log("Error:", errorMessage);
-    displayMessage({
-      success: false,
-      message: errorMessage,
-    });
-    return;
-  });
 }
 
 const modalService = () => {

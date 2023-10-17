@@ -22,13 +22,13 @@
       <div class="extension-upload-container">
         <div
           class="extension-upload-box"
-          onclick="document.getElementById('inputImage').click();"
+          onclick="document.getElementById('imageInput').click();"
         >
           <input
             type="file"
-            id="inputImage"
             accept="image/png, image/jpeg"
             style="display: none"
+            id="imageInput"
           />
           <div class="upload-box-icon" id="inputImagesContainer">
             <img
@@ -79,20 +79,20 @@
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/close.svg"
         /></a>
       </div>
-      <div class="extension-wrapper">
-        <div class="extension-result-images-row">
-          <div
-            class="extension-result-content extension-result-content-show mCustomScrollbar"
-            data-mcs-theme="dark"
-          >
-            <div id="generating-loader" class="image-generating">
-              <div class="loader"></div>
-              <h1 class="image-generating-text">
-                Generating... This may take 3-5 minutes
-              </h1>
-            </div>
-            <div id="outputImages" class="show-generated-images"></div>
+      <div class="extension-result-images-row">
+        <div
+          class="extension-result-content extension-result-content-show mCustomScrollbar"
+          data-mcs-theme="dark"
+        >
+          <div id="generating-loader" class="image-generating">
+            <div class="loader"></div>
+            <h1 class="image-generating-text">
+              Your visualization is actively processing. You are welcome to
+              leave the page and come back. Generations may take up to a couple
+              minutes.
+            </h1>
           </div>
+          <div id="outputImages" class="show-generated-images"></div>
         </div>
 
         <div class="extension-contact-text-row">
@@ -106,7 +106,6 @@
         </div>
       </div>
     </div>
-
     <div id="contact" class="modal-content-container" style="display: none">
       <div class="back-close-row">
         <a onclick="showPage('visualize')" href="#"
@@ -120,40 +119,62 @@
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/close.svg"
         /></a>
       </div>
-      <div class="extension-wrapper">
-        <div class="extension-email-box-container">
-          <div class="email-form-box">
-            <div class="extension-form-field-row">
-              <label for="name">First Name*</label>
-              <input type="text" id="fname" name="fname" />
-            </div>
-            <div class="extension-form-field-row">
-              <label for="name">Last Name*</label>
-              <input type="text" id="lname" name="fname" />
-            </div>
-            <div class="extension-form-field-row">
-              <label for="name">Email Address*</label>
-              <input type="email" id="email" name="fname" />
-            </div>
-            <div class="extension-form-field-row">
-              <label for="name">Phone Number</label>
-              <input type="tel" id="phone" name="fname" />
-            </div>
-            <div class="extension-form-field-row">
-              <label for="name">Zip Code*</label>
-              <input type="" id="zip" name="zip" />
-            </div>
-            <div class="extension-form-field-row">
-              <label for="name">Send us your remodeling question...</label>
-              <input type="text" id="question" name="question" />
-            </div>
-            <div class="extension-form-field-row">
-              <button id="contactButton" class="extension-primary-button">
-                Submit
-              </button>
-            </div>
+      <div class="extension-email-box-container">
+        <div class="email-form-box">
+          <div class="extension-form-field-row">
+            <label for="name">First Name*</label>
+            <input required type="text" id="fname" name="fname" />
+          </div>
+          <div class="extension-form-field-row">
+            <label for="name">Last Name*</label>
+            <input required type="text" id="lname" name="fname" />
+          </div>
+          <div class="extension-form-field-row">
+            <label for="name">Email Address*</label>
+            <input required type="email" id="email" name="fname" />
+          </div>
+          <div class="extension-form-field-row">
+            <label for="name">Phone Number</label>
+            <input type="tel" id="phone" name="fname" />
+          </div>
+          <div class="extension-form-field-row">
+            <label for="name">Zip Code*</label>
+            <input required type="" id="zip" name="zip" />
+          </div>
+          <div class="extension-form-field-row">
+            <label for="name">Send us your remodeling question...</label>
+            <input type="text" id="question" name="question" />
+          </div>
+          <div class="extension-form-field-row">
+            <button id="contactButton" class="extension-primary-button">
+              Submit
+            </button>
           </div>
         </div>
+      </div>
+    </div>
+    <div id="thankYou" class="modal-content-container" style="display: none">
+      <div class="back-close-row">
+        <a onclick="showPage('contact')" href="#"
+          ><img
+            src="https://digi-frontier.github.io/infamous-sunburn-client/images/back.svg"
+          />Back</a
+        >
+      </div>
+      <div class="thank-you-container">
+        <div class="thank-you-text">
+          Thank you for exploring the Donnelly Visualizer Tool. Feel free to
+          continue exploring exterior home visualizations; our dedicated team
+          will contact you shortly!
+        </div>
+        <button
+          onclick="showPage('input')"
+          id="modal-close"
+          class="extension-primary-button close"
+          style="margin-bottom: 20px"
+        >
+          Close
+        </button>
       </div>
     </div>
   </div>
