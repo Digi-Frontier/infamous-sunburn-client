@@ -216,12 +216,10 @@ const getOptions = async () => {
           withCredentials: true,
           transports: ["websocket"],
         });
-
         // Attach event listeners here
         socket.on("error", (errorMessage) => {
           console.error("Error:", errorMessage);
         });
-
         socket.on("generationCompleted", (output) => {
           console.log("Generation completed:", output);
           displayMessage({
@@ -230,7 +228,6 @@ const getOptions = async () => {
           });
           displayImages(output);
         });
-
         socket.on("generationError", (errorMessage) => {
           console.error("Error:", errorMessage);
           displayMessage({
