@@ -256,6 +256,7 @@ table {
     justify-content: center;
     align-items: center;
     gap: 5px;
+    margin-top: 10px;
 }
 
 .visualize-labels {
