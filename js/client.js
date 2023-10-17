@@ -156,9 +156,8 @@ function displayInputImage(imageFile) {
     const inputImageSrc = event.target.result;
     const inputImg = document.createElement("img");
 
-    const maxSize = 1024; // Max width or height
+    const maxSize = 1024;
 
-    // Create a new Image element to handle image resizing
     const imageElement = new Image();
     imageElement.src = inputImageSrc;
 
@@ -181,13 +180,17 @@ function displayInputImage(imageFile) {
       const ctx = canvas.getContext("2d");
       ctx.drawImage(imageElement, 0, 0, width, height);
       const resizedImageSrc = canvas.toDataURL("image/png");
-      inputImg.src = resizedImageSrc;
-      inputImg.alt = "Input Image";
-      inputImg.id = "inputImage";
-      inputImg.loading = "eager";
 
-      imagesContainer.appendChild(inputImg);
-      $("#inputImage").load(" #inputImage > *");
+      // Preload the resized image
+      const resizedImage = new Image();
+      resizedImage.src = resizedImageSrc;
+      resizedImage.onload = () => {
+        inputImg.src = resizedImage.src;
+        inputImg.alt = "Input Image";
+        inputImg.id = "inputImage";
+        inputImg.loading = "eager";
+        imagesContainer.appendChild(inputImg);
+      };
     };
   };
 
