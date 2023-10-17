@@ -132,7 +132,7 @@ function displayInputImage(imageFile) {
     const inputImageSrc = event.target.result;
     const inputImg = document.createElement("img");
 
-    const maxSize = 512; // Max width or height
+    const maxSize = 1024; // Max width or height
 
     // Create a new Image element to handle image resizing
     const imageElement = new Image();
