@@ -305,7 +305,7 @@ const modalService = () => {
 
   function triggerEvent(button, modal) {
     const modalBody = modal.querySelector(".modal-body");
-    const closeBtns = document.getElementsByClassName("close");
+    const closeBtns = document.getElementsByClassName("modal-close");
 
     for (const closeBtn of closeBtns) {
       closeBtn.addEventListener("click", () => closeModal(modal));

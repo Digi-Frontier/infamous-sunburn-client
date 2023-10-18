@@ -354,14 +354,11 @@ table {
 }
 
 .back-close-row a {
-    text-decoration: none;
-    color: black;
-}
-
-.back-close-row a {
     display: flex;
     gap: 10px;
     align-items: center;
+    text-decoration: none;
+    color: black;
 }
 
 .back-close-row {
