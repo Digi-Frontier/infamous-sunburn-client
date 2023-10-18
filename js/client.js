@@ -146,7 +146,6 @@ function validateContact(event) {
     return false;
   }
 }
-
 function displayInputImage(imageFile) {
   const imagesContainer = document.getElementById("inputImagesContainer");
   imagesContainer.innerHTML = "";
@@ -155,12 +154,9 @@ function displayInputImage(imageFile) {
   reader.onload = (event) => {
     const inputImageSrc = event.target.result;
     const inputImg = document.createElement("img");
-
     const maxSize = 1024;
-
     const imageElement = new Image();
     imageElement.src = inputImageSrc;
-
     imageElement.onload = () => {
       let width = imageElement.width;
       let height = imageElement.height;
@@ -193,7 +189,6 @@ function displayInputImage(imageFile) {
       };
     };
   };
-
   reader.readAsDataURL(imageFile);
 }
 
@@ -210,7 +205,6 @@ const getOptions = async () => {
         });
         return;
       }
-
       if (!socketInitialized) {
         socket = io(`wss://${domain}`, {
           withCredentials: true,
