@@ -3,7 +3,6 @@ let socket;
 let storedImageUrls = [];
 let socketInitialized = false;
 
-// Asset Loading
 const loadAsset = async (type, url, callback) => {
   const head = document.querySelector("head");
   let element;
@@ -26,7 +25,7 @@ const loadAsset = async (type, url, callback) => {
 const getRandomNumber = () => Math.floor(Math.random() * 900000) + 100000;
 
 const showPage = (pageId) => {
-  ["input", "visualize", "contact", "thankYou"].forEach((id) => {
+  ["instruct", "input", "visualize", "contact", "thankYou"].forEach((id) => {
     document.getElementById(id).style.display =
       id === pageId ? "inline" : "none";
   });

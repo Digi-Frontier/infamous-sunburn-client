@@ -10,9 +10,88 @@
   />
 
   <div class="modal-body">
-    <div id="input" class="modal-content-container">
+    <div id="instruct" class="modal-content-container">
       <div class="back-close-row">
-        <div></div>
+        <a id="modal-close" class="modal-close" href="#"
+          >Close
+          <img
+            src="https://digi-frontier.github.io/infamous-sunburn-client/images/close.svg"
+        /></a>
+      </div>
+      <div class="instruct-content-container">
+        <div class="instruct-content">
+          <h1 class="instruct-header">HOW TO GUIDE</h1>
+          <div class="instruct-body">
+            Before you try our Visualization Tool, here are some helpful hints
+            to get you started.
+          </div>
+          <div class="instruct-body">
+            <h1 class="instruct-header">Step 1 - Uploading a photo</h1>
+
+            <div>
+              By following these helpful hints, the visualizer will provide
+              better results.
+            </div>
+            <ul style="padding-left: 40px">
+              <li>The house or building is in full view in the image.</li>
+              <li>Avoid cutting off part of the house or building.</li>
+              <li>
+                The house or building takes up most of the image instead of the
+                surrounding environment.
+              </li>
+              <li>
+                Trees or objects in front of the house may provide unrealistic
+                imagery.
+              </li>
+            </ul>
+          </div>
+          <img
+            class="instruct-ex-img"
+            src="https://digi-frontier.github.io/infamous-sunburn-client/images/example1.png"
+          />
+          <img
+            class="instruct-ex-img"
+            src="https://digi-frontier.github.io/infamous-sunburn-client/images/example2.png"
+          />
+
+          <div class="instruct-body">
+            <h1 class="instruct-header">Step 2 - Siding options</h1>
+            <div>
+              Select from stucco or vinyl exterior siding options to visualize.
+            </div>
+          </div>
+          <div class="instruct-body">
+            <h1 class="instruct-header">Step 3 - Color themes</h1>
+            <div>Select from various color themes to visualize.</div>
+          </div>
+          <div class="instruct-body">
+            <h1 class="instruct-header">Step 4 - Visualize</h1>
+            <div>
+              The visualization process will apply to the entire image and we
+              recommend trying more than one time with multiple scenarios of
+              siding and colors.
+              <br />
+              <br />
+              We hope you find the results inspiring. Our team is ready to
+              answer your questions.
+            </div>
+          </div>
+          <button
+            onclick="showPage('input')"
+            class="extension-primary-button extension-button-fluid"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="input" class="modal-content-container" style="display: none">
+      <div class="back-close-row">
+        <a onclick="showPage('instruct')" href="#"
+          ><img
+            src="https://digi-frontier.github.io/infamous-sunburn-client/images/back.svg"
+          />Back</a
+        >
         <a id="modal-close" class="modal-close" href="#"
           >Close
           <img
@@ -86,10 +165,17 @@
         >
           <div id="generating-loader" class="image-generating">
             <div class="loader"></div>
-            <h1 class="image-generating-text">
-              Your visualization is actively processing. Generations may take up
-              to a couple minutes.
+            <h1 class="image-generating-header">
+              Your visualization is actively processing.
             </h1>
+            <div class="instruct-body">
+              Typically, processing takes up to a couple minutes.
+            </div>
+            <div class="instruct-body">
+              You can navigate away from this page while we process your
+              visualization in the background. Feel free to return to this page
+              to check the results.
+            </div>
           </div>
           <div id="outputImages" class="show-generated-images"></div>
         </div>

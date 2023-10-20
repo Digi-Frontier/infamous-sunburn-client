@@ -47,7 +47,10 @@ dl,
 dt,
 dd,
 ol,
-ul,
+ul {
+    list-style: disc;
+}
+
 li,
 fieldset,
 form,
@@ -110,9 +113,6 @@ body {
 }
 
 ol,
-ul {
-    list-style: none;
-}
 
 blockquote,
 q {
@@ -153,6 +153,38 @@ table {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     overflow-y: scroll;
+}
+
+.instruct-content-container {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.instruct-content {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    gap: 20px;
+    line-break: strict;
+
+}
+
+.instruct-ex-img {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.instruct-body {
+    line-height: normal;
+}
+
+.instruct-header {
+    text-align: left;
+    font-weight: 1000;
 }
 
 
@@ -409,15 +441,17 @@ table {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
+    max-width: 500px;
+    text-align: center;
+    line-break: strict;
     width: 80%;
+
 }
 
-.image-generating-text {
-    font-weight: 100px;
-    font-size: 20px;
+.image-generating-header {
     text-align: center;
-    max-width: 80%;
+    font-weight: 1000;
 }
 
 .show-generated-images {
@@ -460,6 +494,10 @@ table {
 }
 
 @media only screen and (max-width: 767px) {
+    .back-close-row {
+        padding: 10px 0px;
+    }
+
     .upload-box-main-txt {
         font-size: 13px;
     }
