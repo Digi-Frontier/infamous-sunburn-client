@@ -2,6 +2,8 @@ const domain = "api.digi-frontier.com";
 let socket;
 let storedImageUrls = [];
 let socketInitialized = false;
+const progressDuration = 180000;
+let progressBarAnimId;
 
 const loadAsset = async (type, url, callback) => {
   const head = document.querySelector("head");
@@ -44,6 +46,42 @@ const displayMessage = (data) => {
     onClick: () => {},
   }).showToast();
 };
+
+let animationId;
+let processCompleted = false;
+
+async function updateProgressBar(duration, finished) {
+  if (finished) {
+    cancelAnimationFrame(animationId);
+    const progressBar = document.getElementById("progress-bar");
+
+    progressBar.style.width = "100%";
+    document.getElementById("progress-text").textContent = "100%";
+    return;
+  }
+
+  const progressBar = document.getElementById("progress-bar");
+  const progressText = document.getElementById("progress-text");
+  const startTime = Date.now();
+
+  function step() {
+    if (finished) {
+      return;
+    }
+
+    const currentTime = Date.now();
+    const elapsedTime = currentTime - startTime;
+    const progress = Math.min(1, elapsedTime / duration) * 100;
+
+    progressBar.style.width = progress + "%";
+    progressText.textContent = progress.toFixed(1) + "%";
+
+    if (progress < 100) {
+      animationId = requestAnimationFrame(step);
+    }
+  }
+  animationId = requestAnimationFrame(step);
+}
 
 const populateExteriorOptions = (elementId, options) => {
   const select = document.getElementById(elementId);
@@ -97,6 +135,7 @@ function addVisualizeButtonListener() {
     };
     startGeneration(dataToSend);
     showPage("visualize");
+    updateProgressBar(progressDuration);
   });
 }
 
@@ -213,13 +252,16 @@ const getOptions = async () => {
         socket.on("error", (errorMessage) => {
           console.error("Error:", errorMessage);
         });
-        socket.on("generationCompleted", (output) => {
+        socket.on("generationCompleted", async (output) => {
           console.log("Generation completed:", output);
-          displayMessage({
-            success: true,
-            message: "Generation complete.",
-          });
-          displayImages(output);
+          await updateProgressBar(0, true);
+          setTimeout(() => {
+            displayMessage({
+              success: true,
+              message: "Generation complete.",
+            });
+            displayImages(output);
+          }, 1000);
         });
         socket.on("generationError", (errorMessage) => {
           console.error("Error:", errorMessage);

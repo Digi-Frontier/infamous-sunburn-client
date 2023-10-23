@@ -164,7 +164,10 @@
           data-mcs-theme="dark"
         >
           <div id="generating-loader" class="image-generating">
-            <div class="loader"></div>
+            <div id="progress-text" class="progress-text">0%</div>
+            <div class="progress-container">
+              <div class="progress-bar" id="progress-bar"></div>
+            </div>
             <h1 class="image-generating-header">
               Your visualization is actively processing.
             </h1>
@@ -251,6 +254,11 @@
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/back.svg"
           />Back</a
         >
+        <a id="modal-close" class="modal-close" href="#"
+          >Close
+          <img
+            src="https://digi-frontier.github.io/infamous-sunburn-client/images/close.svg"
+        /></a>
       </div>
       <div class="thank-you-container">
         <div class="thank-you-text">
@@ -260,11 +268,10 @@
         </div>
         <button
           onclick="showPage('input')"
-          id="modal-close"
-          class="extension-primary-button modal-close"
+          class="extension-primary-button"
           style="margin-bottom: 20px"
         >
-          Close
+          Visualize Again
         </button>
       </div>
     </div>
