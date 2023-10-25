@@ -1,0 +1,10 @@
+{
+  "exclude": [],
+  "ignore": [
+    "index.html",
+    "sales-tools.html",
+    "css/index.css",
+    "rename.js",
+    "rcs/"
+  ]
+}
