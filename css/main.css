@@ -315,7 +315,7 @@ table {
 
 .visualize-labels {
 
-    color: var(--brand-primary);
+    color: var(--primary-font-color);
     font-size: 16px;
     font-style: normal;
     font-weight: 1000;
@@ -327,7 +327,7 @@ table {
 }
 
 .extension-form-field-row label {
-    color: var(--brand-primary);
+    color: var(--primary-font-color);
     font-size: 16px;
     font-style: normal;
     font-weight: 1000;
@@ -343,7 +343,7 @@ table {
     width: 100%;
     box-sizing: border-box;
     border-radius: 6px;
-    border: 1px solid var(--brand-primary);
+    border: 1px solid var(--primary-font-color);
     background: #fff;
     padding: 16px 18px;
     appearance: none;
@@ -366,7 +366,7 @@ table {
     align-items: center;
     flex-direction: column;
     cursor: pointer;
-    background-image: repeating-linear-gradient(0deg, #333333, #333333 7px, transparent 7px, transparent 17px, #333333 17px), repeating-linear-gradient(90deg, var(--brand-primary), var(--brand-primary) 7px, transparent 7px, transparent 17px, #333333 17px), repeating-linear-gradient(180deg, var(--brand-primary), var(--brand-primary) 7px, transparent 7px, transparent 17px, #333333 17px), repeating-linear-gradient(270deg, var(--brand-primary), var(--brand-primary) 7px, transparent 7px, transparent 17px, var(--brand-primary) 17px);
+    background-image: repeating-linear-gradient(0deg, var(--brand-secondary), var(--brand-secondary) 7px, transparent 7px, transparent 17px, var(--brand-secondary) 17px), repeating-linear-gradient(90deg, var(--brand-secondary), var(--brand-secondary) 7px, transparent 7px, transparent 17px, var(--brand-secondary) 17px), repeating-linear-gradient(180deg, var(--brand-secondary), var(--brand-secondary) 7px, transparent 7px, transparent 17px, var(--brand-secondary) 17px), repeating-linear-gradient(270deg, var(--brand-secondary), var(--brand-secondary) 7px, transparent 7px, transparent 17px, var(--brand-secondary) 17px);
     background-size: 2px 100%, 100% 2px, 2px 100%, 100% 2px;
     background-position: 0 0, 0 0, 100% 0, 0 100%;
     background-repeat: no-repeat;
