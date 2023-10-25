@@ -330,6 +330,20 @@ function startGeneration(data) {
   imagesContainer.innerHTML = "";
   document.getElementById("generating-loader").style.display = "flex";
 }
+
+const urlModalTrigger = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const modalParam = urlParams.get("clientOpen");
+  var event = new CustomEvent("urlTrigger");
+  console.log("modalParam");
+
+  if (modalParam == "true") {
+    setTimeout(() => {
+      document.dispatchEvent(event);
+    }, "3000");
+  }
+};
+
 const modalService = () => {
   const d = document;
   const body = d.querySelector("body");
@@ -356,6 +370,8 @@ const modalService = () => {
     modalBody.addEventListener("click", (e) => e.stopPropagation());
 
     button.addEventListener("click", () => toggleModal(modal));
+
+    document.addEventListener("urlTrigger", () => toggleModal(modal));
 
     // Close modal when hitting escape
     body.addEventListener("keydown", (e) => {
@@ -393,6 +409,7 @@ async function includeHTML() {
             addConnectionButtonListener();
             await getOptions();
             modalService();
+            urlModalTrigger();
           }
           if (this.status == 404) {
             console.log("Page not found.");
