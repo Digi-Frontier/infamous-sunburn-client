@@ -10,8 +10,42 @@
   />
 
   <div class="modal-body">
-    <div id="instruct" class="modal-content-container">
+    <div id="initialEmail" class="modal-content-container">
       <div class="back-close-row">
+        <a id="modal-close" class="modal-close" href="#"
+          >Close
+          <img
+            src="https://digi-frontier.github.io/infamous-sunburn-client/images/close.svg"
+        /></a>
+      </div>
+      <div class="extension-email-box-container">
+        <h1 class="email-store-header">PLEASE INPUT YOUR EMAIL TO ACCESS THE VISUALIZER</h1> 
+        <div class="email-form-box">
+          <form id="storeEmailForm" onsubmit="return validateEmail(event);">
+            <div class="extension-form-field-row">
+              <label for="name">Email Address*</label>
+              <input required type="email" id="email" name="fname" />
+            </div>
+            <div class="extension-form-field-row" style="margin-top: 10px">
+              <button
+                type="submit"
+                id="storeEmailButton"
+                class="extension-primary-button"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="instruct" class="modal-content-container" style="display: none">
+      <div class="back-close-row">
+        <a onclick="showPage('initialEmail')" href="#"
+          ><img
+            src="https://digi-frontier.github.io/infamous-sunburn-client/images/back.svg"
+          />Back</a
+        >
         <a id="modal-close" class="modal-close" href="#"
           >Close
           <img

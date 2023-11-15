@@ -27,7 +27,7 @@ const loadAsset = async (type, url, callback) => {
 const getRandomNumber = () => Math.floor(Math.random() * 900000) + 100000;
 
 const showPage = (pageId) => {
-  ["instruct", "input", "visualize", "contact", "thankYou"].forEach((id) => {
+  ["instruct", "input", "visualize", "contact", "thankYou", "initialEmail"].forEach((id) => {
     document.getElementById(id).style.display =
       id === pageId ? "inline" : "none";
   });
@@ -150,7 +150,22 @@ function addConnectionButtonListener() {
     contactEvent();
   });
 }
-
+function validateEmail(event){
+  event.preventDefault();
+  const form = document.getElementById("storeEmailForm");
+  if (form.checkValidity()) {
+    const email = document.getElementById("email").value;
+    const data = {
+      organization: organizationGlobal,
+      token: tokenGlobal,
+      email: email,
+    };
+    socket.emit("storeEmail", JSON.stringify(data));
+    return true;
+  } else {
+    return false;
+  }
+}
 function validateContact(event) {
   event.preventDefault();
   const form = document.getElementById("emailForm");
@@ -278,7 +293,17 @@ const getOptions = async () => {
             message: errorMessage,
           });
         });
-
+        socket.on("emailError", (errorMessage) => {
+          console.error("Error:", errorMessage);
+          displayMessage({
+            success: false,
+            message: errorMessage,
+          });
+        });
+        socket.on("storeEmailComplete", (message) => {
+          console.log(message);
+          showPage("instruct") 
+        });
         socketInitialized = true;
       }
 
