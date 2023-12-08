@@ -453,6 +453,7 @@ async function includeHTML() {
 }
 
 async function init() {
+  await loadAsset("script", "https://cdn.tailwindcss.com");
   await loadAsset(
     "script",
     "https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
