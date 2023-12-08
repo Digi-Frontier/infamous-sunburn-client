@@ -244,6 +244,7 @@ function displayInputImage(imageFile) {
         inputImg.alt = "Input Image";
         inputImg.id = "inputImage";
         inputImg.loading = "eager";
+        inputImg.className = "object-contain rounded";
         imagesContainer.appendChild(inputImg);
       };
     };
