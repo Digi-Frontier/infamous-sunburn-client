@@ -27,9 +27,15 @@ const loadAsset = async (type, url, callback) => {
 const getRandomNumber = () => Math.floor(Math.random() * 900000) + 100000;
 
 const showPage = (pageId) => {
-  ["instruct", "input", "visualize", "contact", "thankYou", "initialEmail"].forEach((id) => {
-    document.getElementById(id).style.display =
-      id === pageId ? "inline" : "none";
+  [
+    "instruct",
+    "input",
+    "visualize",
+    "contact",
+    "thankYou",
+    "initialEmail",
+  ].forEach((id) => {
+    document.getElementById(id).style.display = id === pageId ? "flex" : "none";
   });
 };
 
@@ -100,8 +106,8 @@ function addInputImageEventListener() {
     inputImageElement.addEventListener("change", (event) => {
       const selectedImage = event.target.files[0];
       if (selectedImage) {
-        document.querySelector(".upload-box-main-txt").style.display = "none";
-        document.querySelector(".upload-box-small-txt").style.display = "none";
+        document.getElementById("step1").style.display = "none";
+        document.getElementById("imageInfo").style.display = "none";
 
         displayInputImage(selectedImage);
       }
@@ -150,7 +156,7 @@ function addConnectionButtonListener() {
     contactEvent();
   });
 }
-function validateEmail(event){
+function validateEmail(event) {
   event.preventDefault();
   const form = document.getElementById("storeEmailForm");
   if (form.checkValidity()) {
@@ -302,7 +308,7 @@ const getOptions = async () => {
         });
         socket.on("storeEmailComplete", (message) => {
           console.log(message);
-          showPage("instruct") 
+          showPage("instruct");
         });
         socketInitialized = true;
       }
@@ -321,15 +327,18 @@ const getOptions = async () => {
 
 function displayImages(generatedImageUrls) {
   storedImageUrls = generatedImageUrls;
-
-  const imagesContainer = document.getElementById("outputImages");
+  const connectButton = document.getElementById("connectButton");
+  connectButton.style.display = "flex";
+  const imagesContainer = document.getElementById("gallery");
   imagesContainer.innerHTML = "";
+  imagesContainer.style.display = "block";
   document.getElementById("generating-loader").style.display = "none";
 
   generatedImageUrls.forEach((imageUrl, index) => {
     const generatedImg = document.createElement("img");
     generatedImg.src = imageUrl;
-    generatedImg.alt = "Generated Image";
+    generatedImg.alt = index;
+    generatedImg.style.borderRadius = "5px";
     imagesContainer.appendChild(generatedImg);
   });
 }
@@ -351,7 +360,7 @@ function contactEvent() {
 function startGeneration(data) {
   socket.emit("generate", JSON.stringify(data));
 
-  const imagesContainer = document.getElementById("outputImages");
+  const imagesContainer = document.getElementById("gallery");
   imagesContainer.innerHTML = "";
   document.getElementById("generating-loader").style.display = "flex";
 }
@@ -360,13 +369,7 @@ const urlModalTrigger = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const modalParam = urlParams.get("clientOpen");
   var event = new CustomEvent("urlTrigger");
-  console.log("modalParam");
-
-  if (modalParam == "true") {
-    setTimeout(() => {
-      document.dispatchEvent(event);
-    }, "3000");
-  }
+  document.dispatchEvent(event);
 };
 
 const modalService = () => {
@@ -407,12 +410,12 @@ const modalService = () => {
   }
   function toggleModal(modal) {
     modal.classList.toggle("is-open");
-    $("body").css("overflow", "hidden");
+    $("body").css("position", "fixed");
   }
 
   function closeModal(modal) {
     modal.classList.remove("is-open");
-    $("body").css("overflow", "auto");
+    $("body").css("position", "static");
   }
 };
 
@@ -434,7 +437,6 @@ async function includeHTML() {
             addConnectionButtonListener();
             await getOptions();
             modalService();
-            urlModalTrigger();
           }
           if (this.status == 404) {
             console.log("Page not found.");
@@ -451,10 +453,6 @@ async function includeHTML() {
 }
 
 async function init() {
-  await loadAsset(
-    "css",
-    "https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-  );
   await loadAsset(
     "script",
     "https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"

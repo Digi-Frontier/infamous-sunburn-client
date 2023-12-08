@@ -1,72 +1,111 @@
-<div data-modal="form" class="modal-wrapper">
-  <link
-    rel="stylesheet"
-    href="https://digi-frontier.github.io/infamous-sunburn-client/css/main.css"
-  />
+<div
+  data-modal="form"
+  class="modal-wrapper fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50"
+>
   <link
     rel="stylesheet"
     type="text/css"
     href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
   />
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <div class="modal-body">
-    <div id="initialEmail" class="modal-content-container">
-      <div class="back-close-row">
-        <a id="modal-close" class="modal-close" href="#"
+  <div
+    id="modal-body"
+    class="modal-body flex h-auto w-[90vw] max-w-[1500px] animate-[pop_0.5s_ease] justify-center rounded-md bg-[white] p-5"
+  >
+    <div
+      id="initialEmail"
+      class="h-[85vh] w-full flex-col overflow-x-hidden overflow-y-scroll"
+    >
+      <div class="mb-3 flex justify-between sm:px-[20px] sm:py-[10px]">
+        <a
+          id="modal-close"
+          class="modal-close flex items-center gap-[10px] text-[black] no-underline"
+          href="#"
           >Close
           <img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/close.svg"
         /></a>
       </div>
-      <div class="extension-email-box-container">
-        <h1 class="email-store-header">PLEASE INPUT YOUR EMAIL TO ACCESS THE VISUALIZER</h1> 
-        <div class="email-form-box">
-          <form id="storeEmailForm" onsubmit="return validateEmail(event);">
-            <div class="extension-form-field-row">
-              <label for="name">Email Address*</label>
-              <input required type="email" id="email" name="fname" />
-            </div>
-            <div class="extension-form-field-row" style="margin-top: 10px">
-              <button
-                type="submit"
-                id="storeEmailButton"
-                class="extension-primary-button"
+      <div class="flex h-[70vh] w-full justify-center align-middle">
+        <div class="m-auto max-w-2xl">
+          <h1 class="mb-6 text-center font-[1000]">
+            PLEASE INPUT YOUR EMAIL TO ACCESS THE VISUALIZER
+          </h1>
+          <div
+            class="flex flex-col items-center justify-center rounded-md bg-[#f5f5f5] p-5"
+          >
+            <form id="storeEmailForm" onsubmit="return validateEmail(event);">
+              <div
+                class="mt-[10px] flex flex-col items-center justify-center gap-[5px]"
               >
-                Submit
-              </button>
-            </div>
-          </form>
+                <label
+                  class="mb-[5px] text-center text-[16px] font-[1000] uppercase not-italic leading-[normal]"
+                  for="name"
+                  >Email Address*</label
+                >
+                <input
+                  class="box-border w-full appearance-none rounded-md border-[1px] border-[var(--primary-font-color)] bg-[#fff] px-5 py-3 text-base"
+                  required
+                  type="email"
+                  id="email"
+                  name="fname"
+                />
+              </div>
+              <div
+                class="mt-4 flex flex-col items-center justify-center gap-[5px]"
+              >
+                <button
+                  type="submit"
+                  id="storeEmailButton"
+                  class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-3 sm:py-4 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-    <div id="instruct" class="modal-content-container" style="display: none">
-      <div class="back-close-row">
-        <a onclick="showPage('initialEmail')" href="#"
+    <div
+      id="instruct"
+      class="h-[85vh] w-full flex-col overflow-scroll"
+      style="display: none"
+    >
+      <div class="mb-5 flex justify-between py-[0px] sm:px-[20px] sm:py-[10px]">
+        <a
+          class="flex items-center gap-[10px] text-[black] no-underline"
+          onclick="showPage('initialEmail')"
+          href="#"
           ><img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/back.svg"
           />Back</a
         >
-        <a id="modal-close" class="modal-close" href="#"
+        <a
+          id="modal-close"
+          class="modal-close flex items-center gap-[10px] text-[black] no-underline"
+          href="#"
           >Close
           <img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/close.svg"
         /></a>
       </div>
-      <div class="instruct-content-container">
-        <div class="instruct-content">
-          <h1 class="instruct-header">HOW TO GUIDE</h1>
-          <div class="instruct-body">
+      <div class="flex max-w-full items-center justify-center">
+        <div class="flex w-full max-w-xl flex-col gap-[20px]">
+          <h1 class="text-left font-bold">HOW TO GUIDE</h1>
+          <div class="leading-normal">
             Before you try our Visualization Tool, here are some helpful hints
             to get you started.
           </div>
-          <div class="instruct-body">
-            <h1 class="instruct-header">Step 1 - Uploading a photo</h1>
+          <div class="leading-normal">
+            <h1 class="text-left font-bold">Step 1 - Uploading a photo</h1>
 
             <div>
               By following these helpful hints, the visualizer will provide
               better results.
             </div>
-            <ul style="padding-left: 40px">
+            <ul class="pl-10">
               <li>The house or building is in full view in the image.</li>
               <li>Avoid cutting off part of the house or building.</li>
               <li>
@@ -80,26 +119,26 @@
             </ul>
           </div>
           <img
-            class="instruct-ex-img"
+            class="w-full"
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/example1.png"
           />
           <img
-            class="instruct-ex-img"
+            class="mt-5 w-full"
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/example2.png"
           />
 
-          <div class="instruct-body">
-            <h1 class="instruct-header">Step 2 - Siding options</h1>
+          <div class="leading-normal">
+            <h1 class="text-left font-bold">Step 2 - Siding options</h1>
             <div>
               Select from stucco or vinyl exterior siding options to visualize.
             </div>
           </div>
-          <div class="instruct-body">
-            <h1 class="instruct-header">Step 3 - Color themes</h1>
+          <div class="leading-normal">
+            <h1 class="text-left font-bold">Step 3 - Color themes</h1>
             <div>Select from various color themes to visualize.</div>
           </div>
-          <div class="instruct-body">
-            <h1 class="instruct-header">Step 4 - Visualize</h1>
+          <div class="leading-normal">
+            <h1 class="text-left font-bold">Step 4 - Visualize</h1>
             <div>
               The visualization process will apply to the entire image and we
               recommend trying more than one time with multiple scenarios of
@@ -110,31 +149,45 @@
               answer your questions.
             </div>
           </div>
-          <button
-            onclick="showPage('input')"
-            class="extension-primary-button extension-button-fluid"
-          >
-            Next
-          </button>
+          <div class="mt-4 flex flex-col items-center justify-center gap-[5px]">
+            <button
+              onclick="showPage('input')"
+              class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-3 sm:py-4 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    <div id="input" class="modal-content-container" style="display: none">
-      <div class="back-close-row">
-        <a onclick="showPage('instruct')" href="#"
+    <div
+      id="input"
+      class="h-[85vh] w-full flex-col overflow-scroll"
+      style="display: none"
+    >
+      <div class="mb-3 flex justify-between sm:px-[20px] sm:py-[10px]">
+        <a
+          class="flex items-center gap-[10px] text-[black] no-underline"
+          onclick="showPage('instruct')"
+          href="#"
           ><img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/back.svg"
           />Back</a
         >
-        <a id="modal-close" class="modal-close" href="#"
+        <a
+          id="modal-close"
+          class="modal-close flex items-center gap-[10px] text-[black] no-underline"
+          href="#"
           >Close
           <img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/close.svg"
         /></a>
       </div>
-      <div class="extension-upload-container">
+      <div
+        class="w-[90%] sm:w-96 lg:mt-[100px] mx-[auto] my-0 mb-0 flex flex-col justify-center items-center gap-[20px]"
+      >
         <div
-          class="extension-upload-box"
+          class="w-full h-56 sm:h-[260px] rounded-[6px] flex justify-center items-center flex-col cursor-pointer border-dashed border-2 border-[var(--brand-secondary)]"
           onclick="document.getElementById('imageInput').click();"
         >
           <input
@@ -143,33 +196,63 @@
             style="display: none"
             id="imageInput"
           />
-          <div class="upload-box-icon" id="inputImagesContainer">
+          <div class="mb-4" id="inputImagesContainer">
             <img
               src="https://digi-frontier.github.io/infamous-sunburn-client/images/upload-img-icon.png"
               alt="Placeholder Image"
             />
           </div>
-          <div class="upload-box-main-txt">
-            <label class="visualize-labels" for="upload-box-main-txt">
+          <div
+            class="text-sm sm:text-[16px] max-w-[300px] text-center mt-[15px]"
+          >
+            <label id="step1" class="text-center font-bold uppercase">
               Step 1 - Upload an image of your exterior house
             </label>
           </div>
-          <div class="upload-box-small-txt">PNG, JPG up to 5MB</div>
+          <div
+            id="imageInfo"
+            class="text-sm sm:text-[16px] text-center uppercase font-normal mt-3"
+          >
+            PNG, JPG up to 5MB
+          </div>
         </div>
-        <div class="extension-form-field-row">
-          <label for="name">Step 2 - Select exterior style</label>
-          <select name="exterior" id="exterior"></select>
+        <div
+          class="mt-[10px] flex flex-col items-center justify-center gap-[5px]"
+        >
+          <label
+            class="mb-[5px] text-center text-sm sm:text-[16px] font-bold uppercase"
+            >Step 2 - Select exterior style</label
+          >
+          <select
+            class="w-full box-border rounded-[6px] border-[1px] border-[var(--primary-font-color)] bg-[#fff] px-[8px] py-[10px] text-sm sm:text-[16px]"
+            name="exterior"
+            id="exterior"
+          ></select>
         </div>
-        <div class="extension-form-field-row">
-          <label for="name">Step 3 - Select exterior color</label>
-          <select name="color" id="color"></select>
+        <div
+          class="mt-[10px] flex flex-col items-center justify-center gap-[5px]"
+        >
+          <label
+            class="mb-[5px] text-center text-sm sm:text-[16px] font-bold uppercase"
+            >Step 3 - Select exterior color</label
+          >
+          <select
+            class="w-full box-border rounded-[6px] border-[1px] border-[var(--primary-font-color)] bg-[#fff] px-[8px] py-[10px] text-sm sm:text-[16px]"
+            name="color"
+            id="color"
+          ></select>
         </div>
 
-        <div class="extension-form-field-row">
-          <label for="name">Step 4 - Click on visualize</label>
+        <div
+          class="mt-[10px] flex flex-col items-center justify-center gap-[5px]"
+        >
+          <label
+            class="mb-[5px] text-center text-sm sm:text-[16px] font-bold uppercase"
+            >Step 4 - Click on visualize</label
+          >
           <section name="color">
             <button
-              class="extension-primary-button extension-button-fluid"
+              class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-3 sm:py-4 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
               id="visualizeButton"
             >
               Visualize
@@ -179,100 +262,201 @@
       </div>
     </div>
 
-    <div id="visualize" class="modal-content-container" style="display: none">
-      <div class="back-close-row">
-        <a onclick="showPage('input')" href="#"
+    <div
+      id="visualize"
+      class="h-[85vh] w-full flex-col overflow-scroll"
+      style="display: none"
+    >
+      <div class="mb-3 flex justify-between sm:px-[20px] sm:py-[10px]">
+        <a
+          class="flex items-center gap-[10px] text-[black] no-underline"
+          onclick="showPage('input')"
+          href="#"
           ><img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/back.svg"
           />Back</a
         >
-        <a id="modal-close" class="modal-close" href="#"
+        <a
+          id="modal-close"
+          class="modal-close flex items-center gap-[10px] text-[black] no-underline"
+          href="#"
           >Close
           <img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/close.svg"
         /></a>
       </div>
-      <div class="extension-result-images-row">
+      <div
+        class="flex justify-center items-center flex-col h-[70vh] overflow-x-hidden mCustomScrollbar"
+        data-mcs-theme="dark"
+      >
         <div
-          class="extension-result-content extension-result-content-show mCustomScrollbar"
-          data-mcs-theme="dark"
+          id="generating-loader"
+          class="flex flex-col justify-center items-center gap-[20px] max-w-[500px] text-center w-4/5"
         >
-          <div id="generating-loader" class="image-generating">
-            <div id="progress-text" class="progress-text">0%</div>
-            <div class="progress-container">
-              <div class="progress-bar" id="progress-bar"></div>
-            </div>
-            <h1 class="image-generating-header">
-              Your visualization is actively processing.
-            </h1>
-            <div class="instruct-body">
-              Typically, processing takes up to a couple minutes.
-            </div>
-            <div class="instruct-body">
-              You can navigate away from this page while we process your
-              visualization in the background. Feel free to return to this page
-              to check the results.
-            </div>
-          </div>
-          <div id="outputImages" class="show-generated-images"></div>
-        </div>
-
-        <div class="extension-contact-text-row">
-          <button
-            onclick="showPage('contact')"
-            class="extension-primary-button"
-            id="connectButton"
+          <div id="progress-text" class="text-center">0%</div>
+          <div
+            class="w-60 sm:w-[300px] rounded-full h-2.5 outline outline-[var(--brand-primary)]"
           >
-            Connect With Our Team
-          </button>
+            <div
+              class="bg-[var(--brand-secondary)] h-2.5 rounded-full"
+              id="progress-bar"
+            ></div>
+          </div>
+          <h1 class="font-bold sm:text-lg">
+            Your visualization is actively processing.
+          </h1>
+          <div class="font-normal">
+            Typically, processing takes up to a couple minutes.
+          </div>
+          <div class="font-normal">
+            You can navigate away from this page while we process your
+            visualization in the background. Feel free to return to this page to
+            check the results.
+          </div>
         </div>
+        <div
+          id="gallery"
+          style="display: none"
+          class="overflow-auto flex-col justify-center align-middle gap-3"
+        ></div>
+        <button
+          onclick="showPage('contact')"
+          class="flex box-border mt-5 text-sm sm:text-base cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-1 sm:py-4 text-center text-[white] hover:bg-[var(--primary-hover)]"
+          id="connectButton"
+          style="display: none"
+        >
+          Connect With Our Team
+        </button>
       </div>
     </div>
-    <div id="contact" class="modal-content-container" style="display: none">
-      <div class="back-close-row">
-        <a onclick="showPage('visualize')" href="#"
+    <div
+      id="contact"
+      class="h-[85vh] w-full flex-col overflow-scroll"
+      style="display: none"
+    >
+      <div class="mb-3 flex justify-between sm:px-[20px] sm:py-[10px]">
+        <a
+          class="flex items-center gap-[10px] text-[black] no-underline"
+          onclick="showPage('input')"
+          href="#"
           ><img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/back.svg"
           />Back</a
         >
-        <a id="modal-close" class="modal-close" href="#"
+        <a
+          id="modal-close"
+          class="modal-close flex items-center gap-[10px] text-[black] no-underline"
+          href="#"
           >Close
           <img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/close.svg"
         /></a>
       </div>
-      <div class="extension-email-box-container">
-        <div class="email-form-box">
+      <div class="max-w-sm m-auto">
+        <div
+          class="bg-[#f5f5f5] p-3 sm:p-5 rounded-[10px] flex flex-col justify-center items-center gap-1 sm:gap-5"
+        >
           <form id="emailForm" onsubmit="return validateContact(event);">
-            <div class="extension-form-field-row" style="margin-top: 0px">
-              <label for="name">First Name*</label>
-              <input required type="text" id="fname" name="fname" />
+            <div class="flex flex-col items-center justify-center gap-[5px]">
+              <label
+                class="mb-[5px] text-center text-sm sm:text-[16px] font-bold uppercase"
+                for="name"
+                >First Name*</label
+              >
+              <input
+                class="w-full box-border rounded-[6px] border-[1px] border-[var(--primary-font-color)] bg-[#fff] px-1 py-1 sm:px-2 sm:py-2 text-sm sm:text-[16px]"
+                required
+                type="text"
+                id="fname"
+                name="fname"
+              />
             </div>
-            <div class="extension-form-field-row">
-              <label for="name">Last Name*</label>
-              <input required type="text" id="lname" name="fname" />
+            <div
+              class="mt-[10px] flex flex-col items-center justify-center gap-[5px]"
+            >
+              <label
+                class="mb-[5px] text-center text-sm sm:text-[16px] font-bold uppercase"
+                for="name"
+                >Last Name*</label
+              >
+              <input
+                class="w-full box-border rounded-[6px] border-[1px] border-[var(--primary-font-color)] bg-[#fff] px-1 py-1 sm:px-2 sm:py-2 text-sm sm:text-[16px]"
+                required
+                type="text"
+                id="lname"
+                name="fname"
+              />
             </div>
-            <div class="extension-form-field-row">
-              <label for="name">Email Address*</label>
-              <input required type="email" id="email" name="fname" />
+            <div
+              class="mt-[10px] flex flex-col items-center justify-center gap-[5px]"
+            >
+              <label
+                class="mb-[5px] text-center text-sm sm:text-[16px] font-bold uppercase"
+                for="name"
+                >Email Address*</label
+              >
+              <input
+                class="w-full box-border rounded-[6px] border-[1px] border-[var(--primary-font-color)] bg-[#fff]px-1 py-1 sm:px-2 sm:py-2 text-sm sm:text-[16px]"
+                required
+                type="email"
+                id="email"
+                name="fname"
+              />
             </div>
-            <div class="extension-form-field-row">
-              <label for="name">Phone Number</label>
-              <input type="tel" id="phone" name="fname" />
+            <div
+              class="mt-[10px] flex flex-col items-center justify-center gap-[5px]"
+            >
+              <label
+                class="mb-[5px] text-center text-sm sm:text-[16px] font-bold uppercase"
+                for="name"
+                >Phone Number</label
+              >
+              <input
+                class="w-full box-border rounded-[6px] border-[1px] border-[var(--primary-font-color)] bg-[#fff] px-1 py-1 sm:px-2 sm:py-2 text-sm sm:text-[16px]"
+                type="tel"
+                id="phone"
+                name="fname"
+              />
             </div>
-            <div class="extension-form-field-row">
-              <label for="name">Zip Code*</label>
-              <input required type="" id="zip" name="zip" />
+            <div
+              class="mt-[10px] flex flex-col items-center justify-center gap-[5px]"
+            >
+              <label
+                class="mb-[5px] text-center text-sm sm:text-[16px] font-bold uppercase"
+                for="name"
+                >Zip Code*</label
+              >
+              <input
+                class="w-full box-border rounded-[6px] border-[1px] border-[var(--primary-font-color)] bg-[#fff]px-1 py-1 sm:px-2 sm:py-2 text-sm sm:text-[16px]"
+                required
+                type=""
+                id="zip"
+                name="zip"
+              />
             </div>
-            <div class="extension-form-field-row">
-              <label for="name">Send us your remodeling question...</label>
-              <input type="text" id="question" name="question" />
+            <div
+              class="mt-[10px] flex flex-col items-center justify-center gap-[5px]"
+            >
+              <label
+                class="mb-[5px] text-center text-sm sm:text-[16px] font-bold uppercase"
+                for="name"
+                >Send us your remodeling question...</label
+              >
+              <input
+                class="w-full box-border rounded-[6px] border-[1px] border-[var(--primary-font-color)] bg-[#fff]px-1 py-1 sm:px-2 sm:py-2 text-sm sm:text-[16px]"
+                type="text"
+                id="question"
+                name="question"
+              />
             </div>
-            <div class="extension-form-field-row" style="margin-top: 10px">
+            <div
+              class="mt-[10px] flex flex-col items-center justify-center gap-[5px]"
+              style="margin-top: 10px"
+            >
               <button
                 type="submit"
                 id="contactButton"
-                class="extension-primary-button"
+                class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-3 sm:py-4 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
               >
                 Submit
               </button>
@@ -281,29 +465,40 @@
         </div>
       </div>
     </div>
-    <div id="thankYou" class="modal-content-container" style="display: none">
-      <div class="back-close-row">
-        <a onclick="showPage('contact')" href="#"
+    <div
+      id="thankYou"
+      class="h-[85vh] w-full flex-col overflow-scroll"
+      style="display: none"
+    >
+      <div class="mb-3 flex justify-between sm:px-[20px] sm:py-[10px]">
+        <a
+          class="flex items-center gap-[10px] text-[black] no-underline"
+          onclick="showPage('input')"
+          href="#"
           ><img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/back.svg"
           />Back</a
         >
-        <a id="modal-close" class="modal-close" href="#"
+        <a
+          id="modal-close"
+          class="modal-close flex items-center gap-[10px] text-[black] no-underline"
+          href="#"
           >Close
           <img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/close.svg"
         /></a>
       </div>
-      <div class="thank-you-container">
-        <div class="thank-you-text">
+      <div
+        class="flex justify-center items-center flex-col gap-8 h-[79vh] w-full pb-3"
+      >
+        <div class="max-w-2xl text-base sm:text-lg text-center">
           Thank you for exploring the Donnelly Visualizer Tool. Feel free to
           continue exploring exterior home visualizations; our dedicated team
           will contact you shortly!
         </div>
         <button
           onclick="showPage('input')"
-          class="extension-primary-button"
-          style="margin-bottom: 20px"
+          class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-3 sm:py-4 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
         >
           Visualize Again
         </button>

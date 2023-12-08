@@ -132,7 +132,7 @@ table {
     border-spacing: 0;
 }
 
-.modal-wrapper {
+/* .modal-wrapper {
     display: none;
     transition: all 0.3s ease-in-out;
     background-color: transparent;
@@ -153,7 +153,7 @@ table {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     overflow-y: scroll;
-}
+} */
 
 .progress-container {
     width: 300px;
@@ -213,7 +213,7 @@ table {
 }
 
 
-.modal-body {
+/* .modal-body {
     margin: auto;
     animation: pop 0.5s ease;
     background-color: white;
@@ -224,7 +224,7 @@ table {
     display: flex;
     justify-content: center;
     padding: 20px;
-}
+} */
 
 .modal-content-container {
     display: flex;
@@ -539,12 +539,6 @@ table {
     }
 
 
-    #connectButton {
-        width: 90%;
-        padding: 14px 10px;
-        margin-top: 1vw;
-
-    }
 
     .extension-form-field-row input,
     .extension-form-field-row select {
@@ -636,11 +630,11 @@ table {
         width: auto !important;
 
     }
-
+/* 
     .modal-body {
         overflow-x: hidden;
 
-    }
+    } */
 
 
 }
@@ -663,10 +657,10 @@ table {
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
 
 
-    .modal-body {
+    /* .modal-body {
         padding: 20px;
         height: auto;
-    }
+    } */
 
     .fadein img {
         position: absolute;
