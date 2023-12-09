@@ -445,7 +445,6 @@ async function includeHTML() {
             addConnectionButtonListener();
             await getOptions();
             modalService();
-            urlModalTrigger();
           }
           if (this.status == 404) {
             console.log("Page not found.");
