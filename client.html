@@ -31,6 +31,7 @@
     <div
       id="initialEmail"
       class="h-[85vh] w-full flex-col overflow-x-hidden overflow-y-scroll"
+      style="display: none"
     >
       <div class="mb-3 flex justify-between sm:px-[20px] sm:py-[10px]">
         <a
@@ -73,7 +74,7 @@
                 <button
                   type="submit"
                   id="storeEmailButton"
-                  class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-3 sm:py-4 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
+                  class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-2 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
                 >
                   Submit
                 </button>
@@ -167,7 +168,7 @@
           <div class="mt-4 flex flex-col items-center justify-center gap-[5px]">
             <button
               onclick="showPage('input')"
-              class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-3 sm:py-4 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
+              class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-2 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
             >
               Next
             </button>
@@ -175,11 +176,7 @@
         </div>
       </div>
     </div>
-    <div
-      id="input"
-      class="h-[85vh] w-full flex-col overflow-scroll"
-      style="display: none"
-    >
+    <div id="input" class="h-[85vh] w-full flex-col overflow-scroll">
       <div class="mb-3 flex justify-between sm:px-[20px] sm:py-[10px]">
         <a
           class="flex items-center gap-[10px] text-[black] no-underline"
@@ -204,6 +201,7 @@
         <div
           class="w-full h-56 sm:h-[260px] rounded-[6px] flex justify-center items-center flex-col cursor-pointer border-dashed border-2 border-[var(--brand-secondary)]"
           onclick="document.getElementById('imageInput').click();"
+          id="inputImagesContainer"
         >
           <input
             type="file"
@@ -211,15 +209,10 @@
             style="display: none"
             id="imageInput"
           />
-          <div
-            class="flex justify-center items-center object-contain"
-            id="inputImagesContainer"
-          >
-            <img
-              src="https://digi-frontier.github.io/infamous-sunburn-client/images/upload-img-icon.png"
-              alt="Placeholder Image"
-            />
-          </div>
+          <img
+            src="https://digi-frontier.github.io/infamous-sunburn-client/images/upload-img-icon.png"
+            alt="Placeholder Image"
+          />
           <div
             class="text-sm sm:text-[16px] max-w-[300px] text-center mt-[15px]"
           >
@@ -270,7 +263,7 @@
           >
           <section name="color">
             <button
-              class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-3 sm:py-4 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
+              class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-2 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
               id="visualizeButton"
             >
               Visualize
@@ -355,7 +348,7 @@
       <div class="mb-3 flex justify-between sm:px-[20px] sm:py-[10px]">
         <a
           class="flex items-center gap-[10px] text-[black] no-underline"
-          onclick="showPage('input')"
+          onclick="showPage('visualize')"
           href="#"
           ><img
             src="https://digi-frontier.github.io/infamous-sunburn-client/images/back.svg"
@@ -474,7 +467,7 @@
               <button
                 type="submit"
                 id="contactButton"
-                class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-3 sm:py-4 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
+                class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-2 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
               >
                 Submit
               </button>
@@ -515,8 +508,9 @@
           will contact you shortly!
         </div>
         <button
+          id="visualize-again-button"
           onclick="showPage('input')"
-          class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-3 sm:py-4 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
+          class="box-border cursor-pointer items-center justify-center rounded-[39px] border-0 bg-[var(--brand-primary)] px-16 py-2 text-center text-base not-italic tracking-[0.27px] text-[white] hover:bg-[var(--primary-hover)]"
         >
           Visualize Again
         </button>

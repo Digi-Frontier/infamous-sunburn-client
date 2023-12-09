@@ -1,4 +1,5 @@
 const domain = "api.digi-frontier.com";
+//Remember to change to prod
 let socket;
 let storedImageUrls = [];
 let socketInitialized = false;
@@ -147,14 +148,22 @@ function addVisualizeButtonListener() {
 
 function addInitializeButtonListener() {
   document.getElementById("initializeButton").addEventListener("click", () => {
-    initializeEvent();
+    userEvent("popup-opened");
   });
 }
 
 function addConnectionButtonListener() {
   document.getElementById("connectButton").addEventListener("click", () => {
-    contactEvent();
+    userEvent("connect-button");
   });
+}
+
+function addConnectionButtonListener() {
+  document
+    .getElementById("visualize-again-button")
+    .addEventListener("click", () => {
+      userEvent("vizualize-again-clicked");
+    });
 }
 function validateEmail(event) {
   event.preventDefault();
@@ -166,6 +175,7 @@ function validateEmail(event) {
       token: tokenGlobal,
       email: email,
     };
+    userEvent("user-email-submitted");
     socket.emit("storeEmail", JSON.stringify(data));
     return true;
   } else {
@@ -196,7 +206,7 @@ function validateContact(event) {
       images: storedImageUrls,
       inputImage: imageFile.src,
     };
-
+    userEvent("contact-form-submitted");
     socket.emit("contactSubmission", JSON.stringify(data));
     showPage("thankYou");
 
@@ -244,7 +254,7 @@ function displayInputImage(imageFile) {
         inputImg.alt = "Input Image";
         inputImg.id = "inputImage";
         inputImg.loading = "eager";
-        inputImg.className = "object-contain rounded";
+        inputImg.className = "object-scale-down rounded w-full h-full";
         imagesContainer.appendChild(inputImg);
       };
     };
@@ -344,23 +354,20 @@ function displayImages(generatedImageUrls) {
   });
 }
 
-function initializeEvent() {
+function userEvent(name) {
   socket.emit(
-    "initializeEvent",
-    JSON.stringify({ organization: organizationGlobal, token: tokenGlobal })
-  );
-}
-
-function contactEvent() {
-  socket.emit(
-    "connectEvent",
-    JSON.stringify({ organization: organizationGlobal, token: tokenGlobal })
+    "event",
+    JSON.stringify({
+      name: name,
+      organization: organizationGlobal,
+      token: tokenGlobal,
+    })
   );
 }
 
 function startGeneration(data) {
   socket.emit("generate", JSON.stringify(data));
-
+  userEvent("visualize-clicked");
   const imagesContainer = document.getElementById("gallery");
   imagesContainer.innerHTML = "";
   document.getElementById("generating-loader").style.display = "flex";
@@ -438,6 +445,7 @@ async function includeHTML() {
             addConnectionButtonListener();
             await getOptions();
             modalService();
+            urlModalTrigger();
           }
           if (this.status == 404) {
             console.log("Page not found.");
