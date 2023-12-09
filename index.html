@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Imports stylesheet -->
+    <link rel="stylesheet" href="css/index.css" />
+    <!-- Keep this Style tag. This is your branding / colors. -->
+    <style>
+      :root {
+        --brand-primary: #fd9b41;
+        --brand-secondary: #3be2c9;
+        --primary-hover: #3be2c9;
+        --primary-font-color: #5b4d43;
+      }
+      /* 3be2c9 */
+    </style>
+    <!-- Keep this script tag. This is your authentication. -->
+    <script>
+      const tokenGlobal = "74102a3c-dcdd-4fc0-ad51-8b28dfd5d23f";
+      const organizationGlobal = "YYU1JYgMCcW37TSOLG4h9avt2Zh1";
+    </script>
+    <title>Digi Frontier</title>
+  </head>
+
+  <body>
+    <div id="landing">
+      <div class="extension-wrapper">
+        <div class="extension-two-col extension-home-page">
+          <div class="extension-left-col">
+            <div class="landing-page-content">
+              <div>
+                Transform Your Existing Home into Your Dream Haven with the
+                Donnelly Home Visualizer!
+              </div>
+
+              <div>
+                1. Upload your photo <br />2. Choose a style of siding and
+                colors<br />3. See your new home in seconds...
+              </div>
+            </div>
+            <button
+              id="initializeButton"
+              data-modal-trigger="form"
+              class="home-button"
+            >
+              Show me!
+            </button>
+            <div></div>
+          </div>
+
+          <div class="extension-right-col">
+            <div class="fadein">
+              <img id="f1" class="image" src="./img/landingPic1.png" />
+              <img id="f2" class="image" src="./img/landingPic2.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div client-html="client.html"></div>
+    <script src="js/client.js"></script>
+  </body>
+</html>
