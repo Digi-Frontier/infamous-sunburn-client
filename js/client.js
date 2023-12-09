@@ -1,4 +1,4 @@
-const domain = "api.digi-frontier.com";
+const domain = "infamous-sunburn-dev-c0baeec25c0a.herokuapp.com";
 //Remember to change to prod
 let socket;
 let storedImageUrls = [];
